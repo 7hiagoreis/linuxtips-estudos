@@ -39,6 +39,7 @@ Assim, uma única máquina física consegue manter vários sistemas operacionais
 
 Veja como fica a estrutura visual do nosso ambiente:
 
+```text
 Computador Físico
         |
         v
@@ -55,6 +56,8 @@ Computador Físico
 | ubuntu-lab    |       | outra-vm      |
 | Ubuntu Linux  |       | Linux         |
 +---------------+       +---------------+
+```
+
 
 Cada máquina virtual opera em seu próprio espaço reservado, executando o seu sistema sem interferir nas outras máquinas virtuais.
 
@@ -106,6 +109,7 @@ Esses elementos funcionam para o sistema virtualizado exatamente como funcionari
 
 O ambiente deste projeto será organizado no seguinte fluxo:
 
+```text
 Windows
    |
    v
@@ -124,6 +128,7 @@ Ubuntu
    +-- Pasta Compartilhada
    |
    +-- Snapshots / Rollback (Reversão)
+```
 
 Usaremos este formato como base para todas as nossas práticas e testes futuros.
 
@@ -154,6 +159,7 @@ O Oracle VirtualBox é uma das melhores escolhas para estudos porque permite sub
 
 Exemplo de uso no dia a dia:
 
+```text
 Windows
    |
    +-- VirtualBox
@@ -165,6 +171,7 @@ Windows
           +-- Windows Server (futuro)
           |
           +-- Outras VMs
+```
 
 A quantidade de VMs que você consegue rodar ao mesmo tempo vai depender exclusivamente do hardware físico (RAM, CPU e disco) que o seu computador tem disponível.
 
@@ -180,6 +187,7 @@ O Oracle VirtualBox se enquadra como um Hypervisor do Tipo 2 (Hospedado). Isso s
 
 A pilha de camadas fica organizada desta maneira:
 
+```text
 Hardware Físico
        |
        v
@@ -203,6 +211,7 @@ Oracle VirtualBox
    |
    v
 Ubuntu
+```
 
 Esse modelo é diferente dos Hypervisors Tipo 1 (bare-metal), que são instalados diretamente no hardware sem precisar de um sistema como o Windows por baixo.
 
@@ -280,6 +289,7 @@ A pasta compartilhada permite mapear um diretório do Windows para ser acessado 
 
 Fluxo do mapeamento:
 
+```text
 Windows: C:\VirtualBox\Shared
              |
              v
@@ -287,6 +297,7 @@ Oracle VirtualBox
              |
              v
 Ubuntu: /mnt/shared
+```
 
 Isso facilita a troca de arquivos, scripts e códigos entre o Windows e a VM durante as aulas.
 
@@ -298,6 +309,7 @@ O snapshot funciona como um registro do estado exato da VM em um determinado ins
 
 Exemplo de uso:
 
+```text
 Ubuntu Instalado
        |
        v
@@ -311,6 +323,7 @@ Execução de Testes / Instalações
        |
        v
 Ocorreu um Erro -> Restaurar Snapshot 01
+```
 
 Se algum teste danificar o ambiente, basta restaurar o snapshot e a VM volta instantaneamente para o ponto em que a imagem foi tirada.
 
@@ -322,6 +335,7 @@ Nota: Snapshots servem para testes e laboratórios, mas não substituem rotinas 
 
 Com o ambiente Ubuntu pronto e funcional, nossa VM vai servir de base para aprender e exercitar diversas tecnologias de infraestrutura:
 
+```text
 Linux
    |
    +-- Shell / Terminal
@@ -334,6 +348,7 @@ Linux
    +-- Controle de Versão com Git
    +-- Automação de Tarefas
    +-- Conceitos de CI/CD e DevOps
+```
 
 Isso nos permite explorar um ecossistema completo usando apenas um computador pessoal.
 
@@ -345,6 +360,7 @@ A maior vantagem da virtualização no aprendizado é o isolamento completo do a
 
 Podemos executar qualquer alteração no Ubuntu com a certeza de que o Windows permanecerá 100% protegido.
 
+```text
 Windows
    |
    +-- Oracle VirtualBox
@@ -355,6 +371,7 @@ Windows
                  +-- Alterações de Rede
                  +-- Subida de Serviços
                  +-- Experimentos com Contêineres
+```
 
 Esse formato dá tranquilidade para explorar configurações complexas e refazer o ambiente quantas vezes forem necessárias.
 
@@ -366,6 +383,7 @@ Ao longo dos guias, montaremos uma VM Ubuntu totalmente pronta e ajustada para o
 
 O roteiro do projeto segue esta ordem:
 
+```text
 01 - Introdução ao Projeto
         |
         v
@@ -387,6 +405,7 @@ Windows (Passos Práticos)
         +-- 06. Pastas Compartilhadas
         |
         +-- 07. Snapshots
+```
 
 Ao final dessa sequência, teremos um laboratório limpo e funcional para os próximos conteúdos.
 
@@ -396,6 +415,7 @@ Ao final dessa sequência, teremos um laboratório limpo e funcional para os pr�
 
 A estrutura de arquivos do nosso repositório está dividida entre conceitos gerais e os passos práticos por sistema operacional:
 
+```text
 docs/
 ├── 01-introducao.md
 ├── 02-virtualizacao.md
@@ -407,6 +427,7 @@ docs/
     ├── 05-configurando-a-rede.md
     ├── 06-pastas-compartilhadas.md
     └── 07-snapshots.md
+```
 
 Futuramente, os tutoriais focados no Host em Linux serão adicionados mantendo esse mesmo padrão de pastas.
 
@@ -425,7 +446,5 @@ A partir desta VM Ubuntu, será possível simular servidores reais, testar autom
 Antes de abrir o instalador do VirtualBox, acesse o documento que detalha a parte teórica da virtualização.
 
 Próximo documento:
-`docs/02-virtualizacao.md`
+`docs/windows/02-virtualizacao.md`
 
-Em seguida, começaremos a parte prática de instalação no Windows em:
-`docs/windows/01-instalando-o-virtualbox.md`
