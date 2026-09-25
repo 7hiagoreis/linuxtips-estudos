@@ -1,23 +1,38 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# ==========================================
+# MÁQUINA VIRTUAL UBUNTU / ESTUDOS DEVOPS
+# ==========================================
+
 Vagrant.configure("2") do |config|
-  # Sistema Operacional Base (box)
-  config.vm.box = "debian/bookworm64"
+  # Box base: Ubuntu 22.04 LTS (Jammy)
+  config.vm.box = "ubuntu/jammy64"
 
-  # Nome da VM no VirtualBox
-  config.vm.hostname = "debian-lab"
+  # Nome da VM
+  config.vm.hostname = "ubuntu-lab"
 
-  # Rede privada (apenas a tua máquina acessa)
-  config.vm.network "rede_privada", ip: "192.168.56.10"
+  # Rede Privada (host-only) Apenas o seu PC acessa, ninguém mais!
+  config.vm.network "private_network", ip: "192.168.56.13"
 
-  # Compartilha uma pasta do teu PC com a VM
+  # Pasta compartilhada
   config.vm.synced_folder ".", "/vagrant"
 
-  # Recursos da VM
+  # Recursos no VirtualBox
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "2048"   # 2GB RAM
-    vb.cpus = 2          # 2 CPUs
-    vb.name = "debian-lab"
+    vb.memory = 2048
+    vb.cpus   = 2
+    vb.name   = "estudos-ubuntu-lab"
   end
 
-  # Script que roda DENTRO da VM após criar
+  # ---------- SSH ----------
+  # Garante que o SSH está rodando...
+  config.ssh.insert_key = false        # usa a chave padrão do Vagrant (evita recriar toda hora)
+  config.ssh.forward_agent = true      # encaminha o agente SSH para dentro da VM (útil pra git/ssh-copy-id)
+
+  # Provisionamento
   config.vm.provision "shell", path: "provision/bootstrap.sh"
 end
+
+##########################
+# FIM
