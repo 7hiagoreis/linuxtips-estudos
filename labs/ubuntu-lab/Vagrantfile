@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 # ==========================================
-# MÁQUINA VIRTUAL UBUNTU / ESTUDOS DEVOPS
+# MÁQUINA VIRTUAL UBUNTU SERVER / ESTUDOS DEVOPS
 # ==========================================
 
 Vagrant.configure("2") do |config|
