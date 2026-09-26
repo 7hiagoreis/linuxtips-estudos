@@ -1,0 +1,26 @@
+# Vagrant
+.vagrant/
+*.log
+vagrant*.log
+
+# VirtualBox
+*.vbox
+*.vbox-prev
+*.vdi
+*.vmdk
+*.ova
+*.box
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Secrets / Senhas
+.env
+.env.local
+*.pem
+*.key
